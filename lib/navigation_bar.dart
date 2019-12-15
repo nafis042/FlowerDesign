@@ -127,7 +127,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     }).toList())),
           ),
           Positioned(
-            bottom: _index == 0 ?  -40 - (75.0 - widget.height) : -60 - (75.0 - widget.height),
+            bottom:  -60 - (75.0 - widget.height),
             left: Directionality.of(context) == TextDirection.rtl
                 ? null
                 : _pos * size.width,
