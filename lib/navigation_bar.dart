@@ -23,7 +23,7 @@ class CurvedNavigationBar extends StatefulWidget {
     this.backgroundColor = Colors.blueAccent,
     this.onTap,
     this.animationCurve = Curves.easeOut,
-    this.animationDuration = const Duration(milliseconds: 600),
+    this.animationDuration = const Duration(milliseconds: 200),
     this.height = 75.0,
   })  : assert(items != null),
         assert(items.length >= 1),
@@ -44,14 +44,15 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   Widget _icon;
   AnimationController _animationController;
   int _length;
+  int _index = 1;
 
   @override
   void initState() {
     super.initState();
     _icon = widget.items[widget.index];
     _length = widget.items.length;
-    _pos = widget.index / _length;
-    _startingPos = widget.index / _length;
+    _pos = 0 / _length;
+    _startingPos = 0 / _length;
     _animationController = AnimationController(vsync: this, value: _pos);
     _animationController.addListener(() {
       setState(() {
@@ -102,7 +103,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
             bottom: 0 - (75.0 - widget.height),
             child: CustomPaint(
               painter: NavCustomPainter(
-                  _pos, _length, widget.color, Directionality.of(context)),
+                  1/ _length, _length, widget.color, Directionality.of(context)),
               child: Container(
                 height: 75.0,
               ),
@@ -126,7 +127,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     }).toList())),
           ),
           Positioned(
-            bottom: -40 - (75.0 - widget.height),
+            bottom: _index == 0 ?  -40 - (75.0 - widget.height) : -60 - (75.0 - widget.height),
             left: Directionality.of(context) == TextDirection.rtl
                 ? null
                 : _pos * size.width,
@@ -164,6 +165,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
     if (widget.onTap != null) {
       widget.onTap(index);
     }
+    _index = index;
     final newPosition = index / _length;
     setState(() {
       _startingPos = _pos;
@@ -171,5 +173,6 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
       _animationController.animateTo(newPosition,
           duration: widget.animationDuration, curve: widget.animationCurve);
     });
+    print(_pos);
   }
 }
