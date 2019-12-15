@@ -76,8 +76,8 @@ class FlowerDetailsState extends State<FlowerDetails> {
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 colors: [
-                                  Colors.blue,
-                                  Colors.lightBlue
+                                  Color(0xFF403EE7),
+                                  Color(0xFF6B68F5)
                                 ]
                             ),
                             border: Border.all(
@@ -85,17 +85,29 @@ class FlowerDetailsState extends State<FlowerDetails> {
                             ),
                             borderRadius: BorderRadius.only(topRight: Radius.circular(32), topLeft: Radius.circular(32))
                         ),
-                        child: Column(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(height: 16,),
-                            Text(
-                              widget.flowerListModel.name_en,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500
+                            SizedBox(width: 12,),
+                            Padding(
+                              padding: EdgeInsets.only(top: 4.0),
+                              child: Image.asset(
+                                'images/bg_flower.png',
+                                height: 30,
+                                width: 30,
+                              ),
+                            ),
+                            SizedBox(width: 16,),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                widget.flowerListModel.name_en + "\nBouquets",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500
+                                ),
                               ),
                             ),
                           ],
