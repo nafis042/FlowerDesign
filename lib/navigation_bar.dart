@@ -112,46 +112,45 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
           Positioned(
             left: 0,
             right: 0,
-            bottom: widget.height / 2 - 10,
-            child: SizedBox(
-                height: 30.0,
-                child: Row(
-                    children: widget.items.map((item) {
-                      return NavButton(
-                        onTap: _buttonTap,
-                        position: _pos,
-                        length: _length,
-                        index: widget.items.indexOf(item),
-                        child: item,
-                      );
-                    }).toList())),
+            bottom: 0,
+
+            child: Container(
+              height: 100,
+//              color: Colors.blueAccent,
+              child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: widget.items.map((item) {
+                        return NavButton(
+                          onTap: _buttonTap,
+                          index: widget.items.indexOf(item),
+                          child: item,
+                        );
+                      }).toList()),
+            ),
           ),
+
           Positioned(
-            bottom:  -60 - (75.0 - widget.height),
-            left: Directionality.of(context) == TextDirection.rtl
-                ? null
-                : _pos * size.width,
-            right: Directionality.of(context) == TextDirection.rtl
-                ? _pos * size.width
-                : null,
-            width: size.width / _length,
-            child: Center(
-              child: Transform.translate(
-                offset: Offset(
-                  0,
-                  -(1 - _buttonHide) * 80,
+            left: MediaQuery.of(context).size.width / 2 - 28,
+//            right: 0,
+            top: -20,
+
+            child: GestureDetector(
+              onTap: (){
+                _buttonTap(1);
+              },
+              child: Container(
+                height: 55,
+                width: 55,
+//              color: Colors.blueAccent,
+                child: Image.asset(
+                  'images/makeit.png'
                 ),
-                child: Material(
-                  color: widget.buttonBackgroundColor ?? widget.color,
-                  type: MaterialType.circle,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _icon,
-                  ),
-                ),
+
               ),
             ),
           ),
+
         ],
       ),
     );
@@ -166,13 +165,13 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
       widget.onTap(index);
     }
     _index = index;
-    final newPosition = index / _length;
-    setState(() {
-      _startingPos = _pos;
-      _endingIndex = index;
-      _animationController.animateTo(newPosition,
-          duration: widget.animationDuration, curve: widget.animationCurve);
-    });
-    print(_pos);
+//    final newPosition = index / _length;
+//    setState(() {
+//      _startingPos = _pos;
+//      _endingIndex = index;
+//      _animationController.animateTo(newPosition,
+//          duration: widget.animationDuration, curve: widget.animationCurve);
+//    });
+//    print(_pos);
   }
 }

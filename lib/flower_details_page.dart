@@ -31,37 +31,74 @@ class FlowerDetailsState extends State<FlowerDetails> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        leading: Container(
-          child: BackButton(
-            color: Colors.black,
+        leading: Center(
+          child: Container(
+//            color: Colors.red,
+            margin: EdgeInsets.only(left: 8),
+            constraints: BoxConstraints(
+                maxHeight: 42
+            ),
+            decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(32)
+            ),
+            width: 42,
+//            padding: EdgeInsets.all(9),
+            child: BackButton(
+              color: Colors.black,
+            ),
           ),
         ),
         actions: <Widget>[
-          Icon(
-            Icons.share,
-            color: Colors.black,
+          Center(
+            child: Container(
+//              color: Colors.grey,
+              constraints: BoxConstraints(
+                maxHeight: 42
+              ),
+              padding: EdgeInsets.all(9),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(32)
+              ),
+              width: 42,
+              child: Icon(
+                Icons.share,
+                color: Colors.black,
+//                size: 16,
+              ),
+            ),
           ),
           SizedBox(width: 16,)
         ],
       ),
 
       body: Container(
-        color: Colors.amber,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Color(0xFFFF9C00),
+                Color(0xFFFFB101)
+              ]
+          ),
+        ),
         child: Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
             )
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              SizedBox(height: 16,),
               Container(
                 height: 370,
+//                color: Colors.red,
                 width: (MediaQuery.of(context).size.width - 40),
                 child: Stack(
                   fit: StackFit.loose,
@@ -69,7 +106,7 @@ class FlowerDetailsState extends State<FlowerDetails> {
 
                     Positioned(
                       top: 0,
-                      left: 16,
+                      left: 0,
                       right: 0,
                       height: 160,
                       child: Container(
@@ -101,14 +138,25 @@ class FlowerDetailsState extends State<FlowerDetails> {
                             SizedBox(width: 16,),
                             Padding(
                               padding: const EdgeInsets.only(top: 4.0),
-                              child: Text(
-                                widget.flowerListModel.name_en + "\nBouquets",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500
-                                ),
+                              child:
+
+//                              Text(
+//                                widget.flowerListModel.name_en + "\nBouquets",
+//                                style: TextStyle(
+//                                    color: Colors.white,
+//                                    fontSize: 14,
+//                                    fontWeight: FontWeight.w500
+//                                ),
+//                              ),
+                              RichText(
+                                text: TextSpan(
+
+                                    children: <TextSpan>[
+                                TextSpan(text: widget.flowerListModel.name_en,style: TextStyle(fontWeight: FontWeight.w700)),
+                                TextSpan(text: '\nBouquets',style: TextStyle(fontSize: 10))
+                                ],
                               ),
+                            )
                             ),
                           ],
                         ),
@@ -117,7 +165,7 @@ class FlowerDetailsState extends State<FlowerDetails> {
                     ),
 
                     Positioned(
-                      left: 16,
+                      left: 0,
                       right: 0,
                       top: 40,
                       child: Container(
@@ -166,7 +214,7 @@ class FlowerDetailsState extends State<FlowerDetails> {
                 ),
               ),
 
-              SizedBox(height: 32,),
+              SizedBox(height: 8,),
               Text(
                 "${widget.flowerListModel.description_en}",
                 style: TextStyle(
@@ -182,8 +230,15 @@ class FlowerDetailsState extends State<FlowerDetails> {
 
       bottomNavigationBar:
       new Container(
-        color: Colors.amber,
-        height: 130,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Color(0xFFFF9C00),
+                Color(0xFFFFB101)
+              ]
+          ),
+        ),
+        height: 200,
         child:
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -194,21 +249,21 @@ class FlowerDetailsState extends State<FlowerDetails> {
 
              children: <Widget>[
                Container(
-                    height: 30,
-                    width: 85,
+                    height: 37,
+                    width: 108,
                     decoration: BoxDecoration(
-                      color: Colors.amberAccent,
+                      color: Color(0xFFFFB101),
                       borderRadius: BorderRadius.all(
-                        Radius.circular(15)
+                        Radius.circular(20)
                       ),
                       border: Border.all(
                           color: Colors.white.withOpacity(0.5)
                       )
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-//                        SizedBox(width:1,),
+                        SizedBox(width:2,),
                         GestureDetector(
                           onTap: (){
                             setState(() {
@@ -216,8 +271,8 @@ class FlowerDetailsState extends State<FlowerDetails> {
                             });
                           },
                           child: Container(
-                            width: 25,
-                            height: 25,
+                            width: 32,
+                            height: 32,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)
@@ -228,17 +283,27 @@ class FlowerDetailsState extends State<FlowerDetails> {
                             ),
                           ),
                         ),
-
-                        Text("$quantity"),
+                        Container(
+                            width: 38,
+                            child: Center(
+                                child: Text(
+                                    "$quantity",
+                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                )
+                            )
+                        ),
                         GestureDetector(
                           onTap: (){
                             setState(() {
                               quantity -= 1;
+                              if(quantity < 0){
+                                quantity = 0;
+                              }
                             });
                           },
                           child: Container(
-                            width: 25,
-                            height: 25,
+                            width: 32,
+                            height: 32,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)
@@ -258,29 +323,31 @@ class FlowerDetailsState extends State<FlowerDetails> {
                  "Total\n${quantity * widget.flowerListModel.price} USD",
                  style: TextStyle(
                    color: Colors.white,
-                   fontSize: 18
+                   fontSize: 22
                  ),
                )
              ],
            ),
-            SizedBox(height: 8,),
+            SizedBox(height: 16,),
             MaterialButton(
               onPressed: (){
                 print("make an offer button pressed");
               },
               color: Colors.white,
+              height: 48,
               minWidth: MediaQuery.of(context).size.width - 64,
+              elevation: 5,
               child: Text(
                 "Make an Order",
                 style: TextStyle(fontSize: 16),
               ),
               shape: RoundedRectangleBorder(
                 
-                borderRadius: BorderRadius.all(Radius.circular(20))
+                borderRadius: BorderRadius.all(Radius.circular(25))
 
               ),
             ),
-            SizedBox(height: 16,)
+            SizedBox(height: 48,)
           ],
         ),
       ),

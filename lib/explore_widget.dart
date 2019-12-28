@@ -173,14 +173,14 @@ class ExploreWidgetState extends State<ExploreWidget> {
               Container(
                 height: 150,
                 color: Colors.white,
-                child: ListView(
-//                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //                      crossAxisAlignment: CrossAxisAlignment.center,
-                  scrollDirection: Axis.horizontal,
+//                  scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                    SizedBox(
-                      width: 16,
-                    ),
+//                    SizedBox(
+//                      width: 16,
+//                    ),
                     Container(
                       height: 150,
                       width: 80,
@@ -216,7 +216,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                 height: 0,
               ),
               Container(
-                height: 330,
+                height: 300,
 //                     color: Colors.red,
                 padding: EdgeInsets.all(16.0),
                 child: Column(
@@ -227,7 +227,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                         Text(
                           'Shop By Occasions',
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -247,7 +247,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          height: 120,
+                          height: 90,
                           margin: EdgeInsets.only(top: 16),
                           width: (MediaQuery.of(context).size.width - 40) / 2,
                           decoration: BoxDecoration(
@@ -256,7 +256,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          height: 120,
+                          height: 90,
                           margin: EdgeInsets.only(top: 16),
                           width: (MediaQuery.of(context).size.width - 40) / 2,
                           decoration: BoxDecoration(
@@ -270,7 +270,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          height: 120,
+                          height: 90,
                           margin: EdgeInsets.only(top: 8),
                           width: (MediaQuery.of(context).size.width - 40) / 2,
                           decoration: BoxDecoration(
@@ -279,7 +279,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          height: 120,
+                          height: 90,
                           margin: EdgeInsets.only(top: 8),
                           width: (MediaQuery.of(context).size.width - 40) / 2,
                           decoration: BoxDecoration(
@@ -308,7 +308,7 @@ class ExploreWidgetState extends State<ExploreWidget> {
                         Text(
                           'Popular Orders',
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
